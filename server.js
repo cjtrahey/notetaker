@@ -2,8 +2,8 @@
 const express = require("express");
 const fs = require("fs");
 const path = require('path');
-const apiroute = require('./routes/apiroute');
-const htmlroute = require('./routes/htmlroute');
+const routes = require('./routes/routes');
+
 
 // init express app
 const app = express();
@@ -14,9 +14,8 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(express.static('public'));
 
-// calling routes
-app.use('/', apiroute);
-app.use('/', htmlroute);
+// calling route
+require('./routes/routes')(app);
 
 // set up event listener
 app.listen(PORT, function() {
